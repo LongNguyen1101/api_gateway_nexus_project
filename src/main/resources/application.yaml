@@ -4,7 +4,7 @@ spring:
       mvc:
         routes:
           - id: game-route
-            uri: ${GAME_ROUTE_URI:http://54.151.157.93}
+            uri: ${GAME_ROUTE_URI:http://34.124.152.203}
             predicates:
               - Path=/game/**
             filters:
@@ -18,7 +18,7 @@ spring:
               - PrefixPath=/api/recommender
 
           - id: user-route
-            uri: ${USER_ROUTE_URI:http://47.129.46.62}
+            uri: ${USER_ROUTE_URI:http://35.187.235.117}
             predicates:
               - Path=/users/**
             filters:
