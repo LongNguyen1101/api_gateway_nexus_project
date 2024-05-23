@@ -1,28 +1,38 @@
 spring:
   cloud:
     gateway:
-      mvc:
-        routes:
-          - id: game-route
-            uri: ${GAME_ROUTE_URI:http://34.124.152.203}
-            predicates:
-              - Path=/game/**
-            filters:
-              - PrefixPath=/api/v1
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "PATCH"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*"
+      routes:
+        - id: game-route
+          uri: ${GAME_ROUTE_URI:http://34.124.152.203}
+          predicates:
+            - Path=/game/**
+          filters:
+            - PrefixPath=/api/v1
 
-          - id: recommend-route
-            uri: ${RECOMMEND_ROUTE_URI:http://3.25.121.144}
-            predicates:
-              - Path=/recommend/
-            filters:
-              - PrefixPath=/api/recommender
+        - id: recommend-route
+          uri: ${RECOMMEND_ROUTE_URI:http://34.125.77.21}
+          predicates:
+            - Path=/recommend
+          filters:
+            - PrefixPath=/api/recommender
 
-          - id: user-route
-            uri: ${USER_ROUTE_URI:http://35.187.235.117}
-            predicates:
-              - Path=/users/**
-            filters:
-              - PrefixPath=/api/v1
+        - id: user-route
+          uri: ${USER_ROUTE_URI:http://35.187.235.117}
+          predicates:
+            - Path=/users/**
+          filters:
+            - PrefixPath=/api/v1
 
 management:
   endpoints:
